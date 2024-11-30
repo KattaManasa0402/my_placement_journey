@@ -1,0 +1,90 @@
+class Solution {
+public:
+    vector<int> getNSL(vector<int>& arr, int n) {
+        stack<int> st;
+        vector<int> result(n);
+        for (int i = 0; i < n; i++) {
+            while (!st.empty() && arr[st.top()] > arr[i]) {
+                st.pop();
+            }
+            result[i] = st.empty() ? -1 : st.top();
+            st.push(i);
+        }
+        return result;
+    }
+
+    vector<int> getNSR(vector<int>& arr, int n) {
+        stack<int> st;
+        vector<int> result(n);
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) {
+                st.pop();
+            }
+            result[i] = st.empty() ? n : st.top();
+            st.push(i);
+        }
+        return result;
+    }
+
+    long long sumSubarrayMins(vector<int>& arr) {
+        int n = arr.size();
+        long long sum = 0;
+        vector<int> NSL = getNSL(arr, n);
+        vector<int> NSR = getNSR(arr, n);
+        for (int i = 0; i < n; i++) {
+            long long ls = (i - NSL[i]);
+            long long rs = (NSR[i] - i) ;
+            long long totalways = (ls * rs);
+            long long totalsum = (totalways * arr[i]);
+            sum = (sum + totalsum);
+        }
+        return sum;
+    }
+
+    vector<int> getNGL(vector<int>& arr, int n) {
+        stack<int> st;
+        vector<int> result(n);
+        for (int i = 0; i < n; i++) {
+            while (!st.empty() && arr[st.top()] < arr[i]) {
+                st.pop();
+            }
+            result[i] = st.empty() ? -1 : st.top();
+            st.push(i);
+        }
+        return result;
+    }
+
+    vector<int> getNGR(vector<int>& arr, int n) {
+        stack<int> st;
+        vector<int> result(n);
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.empty() && arr[st.top()] <= arr[i]) {
+                st.pop();
+            }
+            result[i] = st.empty() ? n : st.top();
+            st.push(i);
+        }
+        return result;
+    }
+
+    long long sumSubarrayMax(vector<int>& arr) {
+        int n = arr.size();
+        long long sum = 0;
+        vector<int> NGL = getNGL(arr, n);
+        vector<int> NGR = getNGR(arr, n);
+        for (int i = 0; i < n; i++) {
+            long long ls = (i - NGL[i]);
+            long long rs = (NGR[i] - i);
+            long long totalways = (ls * rs);
+            long long totalsum = (totalways * arr[i]);
+            sum = (sum + totalsum);
+        }
+        return sum;
+    }
+
+    long long subArrayRanges(vector<int>& nums) {
+        long long sum_of_largest = sumSubarrayMax(nums);
+        long long sum_of_smallest = sumSubarrayMins(nums);
+        return (sum_of_largest - sum_of_smallest);
+    }
+};
