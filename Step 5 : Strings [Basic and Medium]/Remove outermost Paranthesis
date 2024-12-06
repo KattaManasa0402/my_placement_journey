@@ -1,0 +1,19 @@
+//it is important to remeber the logic here
+//whenever you encounter a opening or a closing bracket - u need to check whether count ! = 0 
+//if it is then - u need not add that character in our answer!!!
+//do a revision if needed
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        string ans="";
+        int count=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]==')')count--;
+            //it is important to check this condition since 
+            //we need to skip if it is '(' [count==0]
+            if(count!=0)ans.push_back(s[i]);
+            if(s[i]=='(')count++;
+        }
+        return ans;
+    }
+};
