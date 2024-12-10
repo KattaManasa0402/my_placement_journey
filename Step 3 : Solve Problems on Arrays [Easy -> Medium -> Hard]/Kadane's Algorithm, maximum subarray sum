@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maz(int a,int b){
+        return (a>b)?a:b;
+    }
+    int maxSubArray(vector<int>& nums) {
+        int cs=nums[0];
+        int max=nums[0];
+        for(int i=1;i<nums.size();i++){
+            cs=maz(nums[i],nums[i]+cs);
+             if(cs>max){
+                max=cs;
+            }
+            
+           
+        }
+        return max;
+    }
+};
