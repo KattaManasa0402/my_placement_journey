@@ -1,4 +1,5 @@
 //First approach - we will first sort , and then check if string 1 characters are matching with string 2 , then we can return true,else return false.
+// Anagram : If you shuffle a string , say abac - u should get back the other string - aabc .
 class Solution {
 public:
     bool isAnagram(string s, string t) {
@@ -12,3 +13,26 @@ public:
         
     }
 };
+
+
+//second approach : using hashing , if the frequency count of each character in both the strings gets cancelled out , that means 
+// they are anagram of each other
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length()!=t.length()){
+            return false;
+        }
+        unordered_map<char,int>freq;
+        for(int i=0;i<s.length();i++){
+            freq[s[i]]++;
+            freq[t[i]]--;
+        }
+        for(auto it:freq){
+            if(it.second!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+    };
