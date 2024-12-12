@@ -1,0 +1,14 @@
+//First approach - we will first sort , and then check if string 1 characters are matching with string 2 , then we can return true,else return false.
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        //the length of the two strings must be same !!
+        if(s.length()!=t.length()){
+            return false;
+        }
+        sort(s.begin(),s.end());
+        sort(t.begin(),t.end());
+        return(s==t);
+        
+    }
+};
