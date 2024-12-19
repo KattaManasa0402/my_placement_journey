@@ -1,0 +1,23 @@
+//Usually we use this approach to find whether the parenthesis is valid or not
+//but in this case its given that the parenthesis is valid
+//so we just keep the track of the max count - 
+//this returns us the max no of nested loops.
+//at the end we return this max count.
+class Solution {
+public:
+    int maxDepth(string s) {
+        int count=0;
+        int res=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='('){
+                count++;
+                
+            }
+            else if(s[i]==')'){
+                count--;
+            }
+            res=max(res,count);
+        }
+        return res;
+    }
+};
