@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void reverseString(string &s, int left, int right) {
+        while (left < right) {
+            char temp = s[left];
+            s[left++] = s[right];
+            s[right--] = temp;
+        }
+    }
+    
+    string reverseWords(string s) {
+        int left = 0;
+        int right = 0;
+        while (right < s.size()) {
+            if (s[right] == ' ') {
+                reverseString(s, left, right - 1);
+                left = right + 1;
+            }
+            right++;
+        }
+        // Reverse the last word since there's no space after it
+        reverseString(s, left, right - 1);
+        return s;
+    }
+};
