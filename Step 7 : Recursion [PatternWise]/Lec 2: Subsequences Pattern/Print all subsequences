@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int>>sol;
+    vector<vector<int>> printSub(int ind,vector<int>& nums,int n,vector<int>ds){
+        vector<vector<int>>sol;
+        if(ind==n){
+            sol.push_back(ds);
+            return sol;
+        }
+        ds.push_back(nums[ind]);
+        vector<vector<int>> include=printSub(ind+1,nums,n,ds);
+        sol.insert(sol.end(),include.begin(),include.end());
+        ds.pop_back();
+        vector<vector<int>> exclude = printSub(ind+1,nums,n,ds);
+        sol.insert(sol.end(),exclude.begin(),exclude.end());
+        
+        return sol;
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>ds;
+        return printSub(0,nums,nums.size(),ds);
+
+        
+    }
+};
