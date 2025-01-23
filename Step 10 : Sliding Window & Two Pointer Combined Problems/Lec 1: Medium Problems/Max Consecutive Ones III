@@ -1,0 +1,82 @@
+//BRUTE FORCE APPROACH
+
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int n=nums.size();
+        int max_len=0;
+        for(int i=0;i<n;i++){
+            int z=0;
+            for(int j=i;j<n;j++){
+                if(nums[j]==0){
+                    z++;
+                }
+            if(z>k){
+                    break;
+                }
+                 int len=j-i+1;
+                 max_len=max(len,max_len);
+            }
+        }
+        return max_len;
+    }
+};
+
+
+//BETTER APPROACH
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int n=nums.size();
+        int max_len=0;
+        for(int i=0;i<n;i++){
+            int z=0;
+            for(int j=i;j<n;j++){
+                if(nums[j]==0){
+                    z++;
+                }
+            if(z>k){
+                    break;
+                }
+                 int len=j-i+1;
+                 max_len=max(len,max_len);
+            }
+        }
+        return max_len;
+    }
+};
+
+//OPTIMAL APPROACH
+
+//optimal approach
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int l=0;
+        int r=0;
+        int max_len=0;
+        int n=nums.size();
+        int z=0;
+        while(r<n){
+            if(nums[r]==0){
+                z=z+1;
+            }
+            //shifting l directly
+            if(z>k){
+                if(nums[l]==0){
+                    z=z-1;
+                }
+                l++;
+            }
+        
+            if(z<=k){
+            int len=r-l+1;
+            max_len=max(len,max_len);
+            }
+
+            r++;
+
+        }
+        return max_len;
+    }
+};
