@@ -1,0 +1,28 @@
+// Optimal Solution 
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        //using a hashmap to store the frequency of characters
+        unordered_map<char,int>mpp;
+        int l=0;
+        int r=0;
+        int max_len=0;
+        int n=s.size();
+        int max_freq=0;
+        while(r<n){
+            mpp[s[r]]++;
+            max_freq=max(max_freq,mpp[s[r]]);
+            int changes=(r-l+1)-max_freq;
+
+            if(changes > k){
+                mpp[s[l]]--;
+                l++;
+            }
+            if(changes<=k){
+                max_len=max(max_len,r-l+1);
+            }
+            r++;
+        }
+        return max_len;
+    }
+};
