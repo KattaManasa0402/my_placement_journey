@@ -116,7 +116,7 @@ npm install
 ---
 
 ## 🌐 About
-- **Live Demo:** [hotel-tmr2.onrender.com](" ")
+- **Live Demo:** 
 - **Topics:** `nodejs` `mongodb` `mongoose` `expressjs` `mern` `mongodb-database` `nodejs-server` `mern-project`
 
 ---
