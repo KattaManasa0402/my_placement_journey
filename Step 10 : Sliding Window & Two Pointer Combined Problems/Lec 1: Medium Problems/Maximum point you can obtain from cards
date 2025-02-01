@@ -1,1 +1,24 @@
 
+class Solution {
+public:
+    int maxScore(vector<int>& cardPoints, int k) {
+        //we will use the concept of left sum and right sum
+        int lsum=0; int rsum=0;  int maxSum=0;
+        int n=cardPoints.size();
+        for(int i=0;i<k;i++){
+            lsum+=cardPoints[i];
+        }
+        //initially our max sum will be sum upto k
+        maxSum=lsum;
+        //right index starts from the last element
+        int rIndex=n-1;
+        for(int i=k-1;i>=0;i--){
+            //decrement lsum by 1 and increment right sum by 1
+            lsum -=cardPoints[i];
+            rsum=rsum+cardPoints[rIndex];
+            rIndex--;
+            maxSum=max(maxSum,rsum+lsum);
+        }
+        return maxSum;
+    }
+};
