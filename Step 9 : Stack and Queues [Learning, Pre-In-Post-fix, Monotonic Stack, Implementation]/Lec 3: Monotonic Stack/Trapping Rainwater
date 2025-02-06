@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n=height.size();
+        if(n==0)
+        {
+            return 0;
+        }
+        //for each building , we want to store its prefixMax , suffixMax
+        vector<int>pref(n),suf(n);
+        pref[0]=height[0];
+        suf[n-1]=height[n-1];
+        for(int i=1;i<n;i++){
+            pref[i]=max(pref[i-1],height[i]);
+        }
+        for(int i=n-2;i>=0;i--){
+            suf[i]=max(suf[i+1],height[i]);
+        }
+
+        //calculating the total amount of water stored
+        int quantity=0;
+        for(int i=0;i<height.size();i++){
+            //to find 
+            //take minimum height from the max height on each ' s either side - current element
+            quantity += min(pref[i],suf[i]) - height[i];
+        }
+        return quantity;
+    }
+};
