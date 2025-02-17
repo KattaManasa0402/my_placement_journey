@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        int sum=(n*(n+1))/2;
+        int s=0;
+        for (int i = 0; i < nums.size(); i++) {
+            s+=nums[i];
+        }
+        return sum-s;
+    }
+};
+
+// XOR Approach
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size(); // size of the array
+        int xorSum = 0;
+        
+        // XOR all numbers from 0 to n-1 and all elements in the array
+        for (int i = 0; i < n; i++) {
+            xorSum ^= i ^ nums[i]; // XOR the index and the corresponding number in the array
+        }
+        
+        // XOR the result with n (because the missing number is from 0 to n)
+        return xorSum ^ n;
+    }
+};
