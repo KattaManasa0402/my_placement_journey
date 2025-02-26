@@ -1,0 +1,16 @@
+// We initialize res = 0.
+// We iterate over each element (num) in nums and apply res ^= num.
+// Since XOR of two same numbers is 0, all duplicate numbers cancel out.
+// Only the single number remains.
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int n=nums.size();
+        int res=0;
+        for(auto it:nums){
+            res^=it;
+        }
+        return res;
+    }
+};
