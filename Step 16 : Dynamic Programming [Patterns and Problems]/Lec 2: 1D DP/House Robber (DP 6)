@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int f(vector<int>&nums,int start,int end){
+        int n=nums.size();
+        int prev=nums[start];
+        int prev2=0;
+        int curri;
+        for(int i=start+1;i<=end;i++){
+            int pick=nums[i];
+            if(i>start){
+                pick+=prev2;
+            }
+            int not_pick=0+prev;
+            curri=max(pick,not_pick);
+            prev2=prev;
+            prev=curri;
+        }
+        
+        return prev;
+
+    }
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)return nums[0];
+        int case1=f(nums,0,n-2);
+        int case2=f(nums,1,n-1);
+        return max(case1,case2);
+    }
+};
