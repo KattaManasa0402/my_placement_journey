@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int n=nums.size();
+        //sort the array first
+        sort(nums.begin(),nums.end());
+        //to return all the triplets - we use a list
+        vector<vector<int>>ans;
+        //iterate from the start
+        for(int i=0;i<n;i++){
+            //continue if your ith element is the same to avoid duplicacy
+            if(i>0 && nums[i]==nums[i-1])continue;
+            //j starts after i
+            int j=i+1;
+            //k starts from last element
+            int k=n-1; 
+            // break point - if k>j
+            while(j<k){
+                int sum=nums[i]+nums[j]+nums[k];
+                if(sum>0){
+                    k--;
+                }
+                else if(sum<0){
+                    j++;
+                }
+                else{
+                    vector<int>temp={nums[i],nums[j],nums[k]};
+                    ans.push_back(temp);
+                    j++;
+                    k--;
+                    //if we encounter duplicate elements then skip them 
+                    while(j<k && nums[j]==nums[j-1])j++;
+                    while(j<k && nums[k]==nums[k+1])k--;
+                }
+            }
+            
+        }
+        return ans;
+    }
+};
