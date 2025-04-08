@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    // Function to insert a new node at given position in doubly linked list.
+    Node *addNode(Node *head, int pos, int data) {
+            Node* current=head;
+            Node* temp=head;
+            int i=0;
+           while(i<pos && temp!=NULL){
+               temp=temp->next;
+               i++;
+           }
+           Node* newNode=new Node(data);
+           newNode->next=temp->next;
+           newNode->prev=temp;
+           if(temp->next!=nullptr){
+               temp->next->prev=newNode;
+               newNode->prev=temp;
+           }
+           temp->next=newNode;
+           return current;
+    }
+};
