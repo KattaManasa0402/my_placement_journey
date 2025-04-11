@@ -1,0 +1,41 @@
+//BRUTE FORCE APPROACH 
+Node* sortList(Node *head){
+    int countZero=0;
+    int countOnes=0;
+    int countTwo=0;
+    Node* temp=head;
+    while(temp!=NULL){
+        if(temp->data==0){
+            countZero++;
+        }
+        else if(temp->data==1){
+            countOnes++;
+        }
+        else{
+            countTwo++;
+        }
+        temp=temp->next;
+        
+    }
+    int size=countZero+countOnes+countTwo;
+    Node* curr=head;
+    while(curr!=NULL){
+    if(countZero){
+        curr->data=0;
+        countZero--;
+    }
+    else if(countOnes){
+        curr->data=1;
+        countOnes--;
+    }
+    else{
+        curr->data=2;
+        countTwo--;
+    }
+    curr=curr->next;
+
+    }
+    return head;
+
+
+}
