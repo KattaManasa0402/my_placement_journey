@@ -39,3 +39,41 @@ Node* sortList(Node *head){
 
 
 }
+
+
+//better approach 
+Node* sortList(Node *head){
+   Node* zeroHead=new Node(-1);
+   Node * p1=zeroHead;
+    Node*oneHead=new Node(-1);
+    Node* p2=oneHead;
+     Node* twoHead=new Node(-1);
+     Node* p3=twoHead;
+     Node* temp=head;
+     while(temp!=NULL){
+         if(temp->data==0){
+             p1->next=temp;
+             
+             p1=p1->next;
+         }  
+         else if(temp->data==1){
+             p2->next=temp;
+             p2=p2->next;
+         }
+         else {
+             p3->next=temp;
+             p3=p3->next;
+         }
+         temp=temp->next;
+     }
+     p1->next=oneHead->next;
+     p2->next=twoHead->next;
+     p3->next=NULL;
+     Node* newHead=zeroHead->next;
+     delete zeroHead;
+     delete oneHead;
+     delete twoHead;
+     return newHead;
+
+     
+}
