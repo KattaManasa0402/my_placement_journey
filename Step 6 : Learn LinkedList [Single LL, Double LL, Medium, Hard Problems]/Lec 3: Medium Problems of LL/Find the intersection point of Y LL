@@ -1,3 +1,49 @@
+//BRUTE FORCE APPROACH - HASHING 
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *t1=headA;
+        ListNode *t2=headB;
+        unordered_map <ListNode*,int>mpp;
+        while(t1!=NULL){
+            mpp[t1]=1;
+            t1=t1->next;
+        }
+        while(t2!=NULL){
+            if(mpp.find(t2)!=mpp.end()){
+                return t2;
+                break;
+            }
+            else{
+                mpp[t2]=1;
+                t2=t2->next;
+            }
+        }
+        return NULL;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //OPTIMAL APPROACH 
 class Solution {
 public:
