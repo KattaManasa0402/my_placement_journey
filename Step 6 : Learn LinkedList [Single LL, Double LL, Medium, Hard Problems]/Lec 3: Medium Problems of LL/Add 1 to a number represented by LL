@@ -1,0 +1,41 @@
+//BRUTE FORCE APPROACH 
+class Solution {
+  public:
+    Node* reverse(Node* head){
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        Node* newHead=reverse(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return newHead;
+    }
+    
+    Node* addOne(Node* head) {
+        head=reverse(head);
+        Node* temp=head;
+        int c=1;
+        while(temp!=NULL){
+            temp->data=temp->data+c;
+            if(temp->data<10){
+                c=0;
+                break;
+            }
+              else{
+                  temp->data=0;
+                  c=1;
+              }
+            temp=temp->next;
+        }
+        if(c==1){
+            Node* newNode=new Node(1);
+            head=reverse(head);
+            newNode->next=head;
+            return newNode;
+            
+            
+        }
+        head=reverse(head);
+        return head;
+    }
+};
