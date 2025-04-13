@@ -5,9 +5,11 @@ public:
             return head;
         }
         ListNode* newHead=reverseList(head->next);
-        ListNode* front=head->next;
+        ListNode* front=head->next;  //--u can also write this as - head->next->next=head; -- since it means the same !!
         front->next=head;
         head->next=NULL;
         return newHead;
     }
 };
+
+
