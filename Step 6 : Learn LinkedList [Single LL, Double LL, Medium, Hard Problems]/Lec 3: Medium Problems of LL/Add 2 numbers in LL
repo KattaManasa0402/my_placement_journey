@@ -1,0 +1,28 @@
+//ONE APPRAOCH
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* t1=l1;
+        ListNode* t2=l2;
+        ListNode* dummy=new ListNode(-1);
+        ListNode* temp=dummy;
+        int carry=0;
+        while(t1!=NULL || t2!=NULL){
+            int s=carry;
+            if(t1)s+=t1->val;
+            if(t2)s+=t2->val;
+            int val=s%10;
+            carry=s/10;
+            ListNode* curr=new ListNode(val);
+            temp->next=curr;
+            temp=curr;
+            if(t1)t1=t1->next;
+            if(t2)t2=t2->next;
+        }
+        if(carry){
+            ListNode* newNode=new ListNode(carry);
+            temp->next=newNode;
+        }
+        return dummy->next;
+    }
+};
