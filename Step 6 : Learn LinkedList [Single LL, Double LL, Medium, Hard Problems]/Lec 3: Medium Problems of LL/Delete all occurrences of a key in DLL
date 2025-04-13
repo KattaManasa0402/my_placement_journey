@@ -1,0 +1,31 @@
+class Solution {
+  public:
+    void deleteAllOccurOfX(struct Node** head_ref, int x) {
+        Node* temp=*head_ref;
+        while(temp!=NULL){
+        Node* curr=temp;
+        temp=temp->next;
+            if(curr->data==x){
+                if(curr==*head_ref){
+                    *head_ref = curr->next;
+                    //NULL POINTER EXCEPTION HANDLING 
+                    if (*head_ref != NULL) {
+                        (*head_ref)->prev = NULL;
+                    }
+                }
+                else{
+                    //NULL POINTER EXCEPTION HANDLING 
+                   if (curr->prev != NULL)
+                        curr->prev->next = curr->next;
+                    if (curr->next != NULL)
+                        curr->next->prev = curr->prev;
+                }
+                delete curr;
+                
+            }
+           
+            
+        }
+        
+    }
+};
