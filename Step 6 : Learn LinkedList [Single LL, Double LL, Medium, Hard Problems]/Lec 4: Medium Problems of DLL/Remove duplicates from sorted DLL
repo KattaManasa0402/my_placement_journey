@@ -1,0 +1,23 @@
+//TIME COMPLEXITY - O(N) NOT O(N^2)
+class Solution
+{
+public:
+
+    Node * removeDuplicates(struct Node *head)
+    {
+        Node* temp=head;
+        while(temp!=NULL && temp->next!=NULL){
+             Node* nextNode=temp->next;
+             while(nextNode!=NULL && nextNode->data==temp->data){
+                 Node* del=nextNode;
+                 nextNode=nextNode->next;
+                 free(del);
+             }
+             temp->next=nextNode;
+             if(nextNode)nextNode->prev=temp;
+             temp=temp->next;
+             
+        }
+        return head;
+    }
+};
