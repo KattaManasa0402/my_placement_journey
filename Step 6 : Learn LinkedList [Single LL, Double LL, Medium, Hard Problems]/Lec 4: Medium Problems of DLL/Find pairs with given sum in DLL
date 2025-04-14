@@ -1,0 +1,22 @@
+// BRUTE FORCE  APPROACH BUT WILL SHOW TIME LIMIT EXCEEDED 
+class Solution
+{
+public:
+    vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target)
+    {
+        vector<pair<int,int>> p;
+        Node* t1=head;
+        Node* t2=head->next;
+        while(t1!=NULL){
+            t2=t1->next;
+            while(t2!=NULL){
+            if(t1->data + t2->data==target){
+                p.push_back({t1->data,t2->data});
+            }
+            t2=t2->next;
+        }
+        t1=t1->next;
+    }
+    return p;
+    }
+};
