@@ -1,0 +1,50 @@
+class Solution {
+public:
+    ListNode* giveKthNode(ListNode* start,int k){
+        int c=0;
+        ListNode* curr=start;
+        while(curr!=NULL && c<k-1){
+            curr=curr->next;
+            c++;
+        }
+        return curr;
+
+    }
+    ListNode* revList(ListNode* head){
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        ListNode* newHead=revList(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return newHead;
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* temp=head;
+        ListNode* prev=temp;
+        while(temp!=NULL){
+            ListNode* kth=giveKthNode(temp,k);
+             //might happen that there is no kth node and u get NULL
+            if(kth==NULL){
+                if(prev)//this is only applicable for lengthy ll 
+                //else if it is say less than k nodes ll - it will not 
+                //execute and there is no need of the prev node
+                prev->next=temp;
+                break;
+            }
+            ListNode* nextNode=kth->next;
+            kth->next=NULL;
+            ListNode* newNode=revList(temp);
+            if(temp==head){
+                head=kth;
+                }
+                else{
+                    prev->next=kth;
+                }
+                 prev=temp;
+                 temp=nextNode;
+            
+        }
+        return head;
+    }
+};
