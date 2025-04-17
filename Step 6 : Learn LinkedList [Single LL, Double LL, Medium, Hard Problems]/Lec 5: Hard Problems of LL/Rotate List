@@ -1,0 +1,44 @@
+class Solution {
+public:
+     int countNodes(ListNode* head){
+        ListNode* temp=head;
+        int c=0;
+        while(temp!=NULL){
+            c++;
+            temp=temp->next;
+        }
+        return c;
+     }
+    ListNode* rotateRight(ListNode* head, int k) {
+        //count the number of nodes
+        int n=countNodes(head);
+
+        //Edge case -1 - if there is no node or if there is a single node
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+
+        k=k%n;
+
+        //if no of rotations = no of nodes 
+        if(k==0){
+            return head;
+        }
+        ListNode* tail=head;
+        while(tail->next!=NULL){
+            tail=tail->next;
+        }
+        tail->next=head;
+       ListNode* temp=head;
+       int c=0;
+       while(temp!=NULL && c<n-k-1){
+        c++;
+        temp=temp->next;
+       }
+       ListNode* newHead=temp->next;
+       temp->next=NULL;
+       return newHead;
+
+
+    }
+};
