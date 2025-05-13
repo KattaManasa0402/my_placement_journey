@@ -1,3 +1,41 @@
+//Iterative approach 
+class Solution {
+public:
+    int nodeLevels(TreeNode* root){
+        if (!root) return 0;
+        std::queue<TreeNode*> q;
+        q.push(root);
+        int nodeLevels=0;
+
+        while(!q.empty()){
+            int node_at_level=q.size();
+            if(node_at_level==0){
+                return nodeLevels;
+            }
+            while(node_at_level>0){
+                TreeNode* el=q.front();
+                q.pop();
+                if(el->left!=NULL){
+                    q.push(el->left);
+                }
+                if(el->right!=NULL){
+                    q.push(el->right);
+                }
+                node_at_level--;
+            }
+            nodeLevels++;
+        }
+        return nodeLevels;
+    }
+
+
+    int maxDepth(TreeNode* root) {
+        int depth=nodeLevels(root);
+        return depth;
+    }
+};
+
+//Recursive Approach 
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
