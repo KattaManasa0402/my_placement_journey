@@ -28,3 +28,35 @@ int ninjaTraining(int n, vector<vector<int>> &points)
     return sol;
     
 }
+
+
+//this is the optimal approach where we are using memoization (storing the result in a dp array )
+
+int func(int day,int last, vector<vector<int>> &points,vector<vector<int>> &dp){
+    if(day==0){
+        int maxi=0;
+        for(int task=0;task<3;task++){
+            if(task!=last){
+            int point=points[0][task];
+            maxi=max(maxi,point);
+            }
+        }
+        return maxi;
+    }
+    if(dp[day][last]!=-1)return dp[day][last];
+    int maxi=0;
+    for(int task=0;task<3;task++){
+        if(task!=last){
+        int point=points[day][task] + func(day-1,task,points,dp);
+        maxi=max(maxi,point);
+        }
+    }
+    return dp[day][last]=maxi;
+    
+}
+int ninjaTraining(int n, vector<vector<int>> &points)
+{   vector<vector<int>> dp(n,vector<int>(4,-1));
+    int sol=func(n-1,3,points,dp);
+    return sol;
+    
+}
