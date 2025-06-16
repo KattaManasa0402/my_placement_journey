@@ -1,0 +1,18 @@
+//i have used a recursive approach !!
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+#include<vector>
+int func(vector<int>&arr,int i,int n){
+    int max_el=arr[i];
+    if(i==n-1){
+        return max_el;
+    }
+    return max(max_el,func(arr,i+1,n));
+}
+int main() {
+   vector<int>arr={2,3,4,6};
+   int max_el=func(arr,0,arr.size());
+   cout<<max_el;
+   return 0;
+}
