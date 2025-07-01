@@ -1,0 +1,57 @@
+//optimal approach
+class Solution {
+public:
+    int minEl(vector<int>& bloomDay){
+        int minEl=INT_MAX;
+        for(int i=0;i<bloomDay.size();i++){
+            minEl=min(minEl,bloomDay[i]);
+        }
+        return minEl;
+    }
+    int maxEl(vector<int>& bloomDay){
+        int maxEl=INT_MIN;
+        for(int i=0;i<bloomDay.size();i++){
+            maxEl=max(maxEl,bloomDay[i]);
+        }
+        return maxEl;
+    }
+        //whether possible or not  
+        bool isPossible(vector<int>& bloomDay,int m,int k,int day){
+            int cnt=0;
+            int noB=0;
+            for(int i=0;i<bloomDay.size();i++){
+                if(bloomDay[i]<=day){
+                    cnt++;
+                }
+                else{
+                    noB+=(cnt/k);
+                    cnt=0;
+                }
+            }
+            noB+=(cnt/k);
+            return noB>=m;
+        }
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        long long min_flowers=m*1LL*k*1LL;
+        if(min_flowers>bloomDay.size()){
+            return -1;
+        }
+        
+         int minE=minEl(bloomDay);
+            int maxE=maxEl(bloomDay);
+            int low=minE;
+            int high=maxE;
+            int ans;
+            while(low<=high){
+                int mid=low+(high-low)/2;
+                if(isPossible(bloomDay,m,k,mid)){
+                    high=mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+            }
+            return low;
+    }
+          
+};
