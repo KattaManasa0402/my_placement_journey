@@ -1,0 +1,73 @@
+//i did it on interview bit - account  - kmanasa0402@gmail.com
+
+using namespace std;
+#include<iostream>
+#include<bits/stdc++.h>
+
+// Implementing a Stack using Arrays
+
+class Stack{
+    public:
+    int size;
+    int top;
+    int *arr;
+    Stack(int size){
+        top=-1;
+        this->size=size;
+        arr=new int[size];
+    }
+
+    //push into a stack
+    void push(int data){
+        if(top>=size-1){
+            cout<<"Stack overflow";
+            return;
+        }
+        else{
+            top++;
+            arr[top]=data;
+            cout<<data<<" has been pushed into the stack"<<endl;
+        }
+    }
+
+    //pop from a stack
+    void pop(){
+        if(top==-1){
+            cout<<"Stack underflow";
+            return;
+        }
+        else{
+            int del_item=arr[top];
+            cout<<del_item<<" has been popped from the stack";
+            // delete(del_item);
+            top--;
+        }
+    }
+
+    //top of the stack
+    int get_top(){
+        return arr[top];
+    }
+
+    //display the elements of a stack 
+    void display(){
+        for(int i=0;i<=top;i++){
+            cout<<arr[i]<<" ";
+        }
+    }
+};
+
+int main(){
+    int n;
+    cout<<"Enter the stack size"<<endl;
+    cin>>n;
+    Stack st(n);
+    st.push(4);
+    st.push(5);
+    st.push(7);
+    st.push(9);
+    st.display();
+	cout<<endl;
+	cout<<st.size;
+    return 0;
+}
