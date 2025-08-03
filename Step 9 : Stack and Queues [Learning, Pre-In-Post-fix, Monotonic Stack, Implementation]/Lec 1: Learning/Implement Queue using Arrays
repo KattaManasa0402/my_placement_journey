@@ -1,0 +1,64 @@
+//in  c++ - saved in interviewbit platform too -check that out too
+using namespace std;
+#include <iostream>
+#include<bits/stdc++.h>
+class Main {
+	int front;
+	int rear;
+	int *arr;
+	int size;
+	public:
+	Main(int n){
+		size=n;
+		front=-1;
+		rear=-1;
+		arr=new int[size];
+	}
+	void push(int data){
+		//if queue is full
+		if((rear+1)%size==front){
+			cout<<"Queue overflow";
+			return;
+		}
+		//if queue is empty - enter 1st element
+		else if(front==-1){
+			front=rear=0;
+		}
+		else{
+			//if not empty
+			rear=(rear+1)%size;
+		}
+		arr[rear]=data;
+	}
+	void pop(){
+		//queue is empty
+		if(front==-1){
+			cout<<"Queue is empty";
+			return;
+		}
+			//if only 1 element is left in this queue
+			else if(front==rear){
+				front=rear=-1;
+				return;
+			}
+			else{
+				front=(front+1)%size;
+			}
+		}
+	void display(){
+		for(int i=front;i<=rear;i++){
+			cout<<arr[i]<<"\n";
+		}
+	}
+};
+	int main() {
+		int n;
+		cin>>n;
+		Main obj(n);
+		obj.push(1);
+		obj.push(2);
+		obj.push(3);
+		obj.push(4);
+		obj.display();
+		return 0;
+	}
