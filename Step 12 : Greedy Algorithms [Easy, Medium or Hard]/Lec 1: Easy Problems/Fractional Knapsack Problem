@@ -1,0 +1,30 @@
+// https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1
+
+// in this question we use comparators - so basically if u want to sort a particular array based on a condition or like increasing or 
+// decreasing order - then use this comparator function 
+
+
+class Solution {
+  public:
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        
+     int n=val.size();
+     vector<int>idx(n,0);
+     iota(idx.begin(),idx.end(),0);
+     sort(idx.begin(),idx.end(),[&](int i,int j){
+        return (long long)val[i]*wt[j]>(long long)val[j]*wt[i]; 
+     });
+     double tv=0;
+     for(auto &it:idx){
+         if(wt[it]<=capacity){
+             tv+=val[it];
+             capacity-=wt[it];
+         }
+         else{
+             tv+=(double)val[it]/wt[it]*capacity;
+             break;
+         }
+     }
+     return tv;
+    }
+};
