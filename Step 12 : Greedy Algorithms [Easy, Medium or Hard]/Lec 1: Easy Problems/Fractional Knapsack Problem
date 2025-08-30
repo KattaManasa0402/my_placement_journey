@@ -28,3 +28,48 @@ class Solution {
      return tv;
     }
 };
+
+
+//Using the struct method 
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+struct Item{
+    int value;
+    int weight;
+};
+class Main{
+    public:
+     bool comp(Item a,Item b){
+        double r1=(double)a.value/a.weight;
+        double r2=(double)b.value/b.weight;
+        return r1>r2;
+    }
+    double func(Item arr[],int capacity,int n){
+        sort(arr,arr+n,comp);
+        double  sol=0.0;
+        for(int i=0;i<n;i++){
+            if(arr[i].weight<=capacity){
+                sol+=arr[i].value;
+                capacity-=arr[i].weight;
+            }
+            else{
+                sol+=(double)arr[i].value/arr[i].weight*capacity;
+                break;
+            }
+        }
+        return sol;
+    }
+};
+
+int main() {
+    int n=3;
+    int capacity=50;
+    Item arr[n]={{60,10},{100,20},{120,30}};
+    Main obj;
+    double sol=obj.func(arr,capacity,n);
+    cout<<fixed<<setprecision(2)<<sol;
+    return 0;
+}
