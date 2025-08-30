@@ -1,0 +1,23 @@
+// Online C++ compiler to run C++ program online
+//this one i did it in online compiler not the question on gfg
+#include <iostream>
+using namespace std;
+#include<bits/stdc++.h>
+bool comp(int a,int b){
+    return a>b;
+}
+int main() {
+    vector<int>arr={1,2,5,10,20,50,100,500,1000};
+    int value=70;
+    int n=arr.size();
+    int cnt=0;
+    sort(arr.begin(),arr.end(),comp);
+    for(int i=0;i<n;i++){
+        if(value>=arr[i]){
+            cnt+=value/arr[i];
+            value=value%arr[i];
+        }
+    }
+    cout<<cnt;
+    return 0;
+}
